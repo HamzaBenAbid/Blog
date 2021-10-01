@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}MY Blog{% endblock %}
+
+{% block body %}
+    <style>
+        .articles{
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            padding: 16px 20px;
+        }
+        img{
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            margin: 10px;
+        }
+    </style>
+    <section class="articles mt-5" >
+        <article class="mb-5">
+            <h2>Title </h2>
+            <div >
+                created At
+                <span class="badge rounded-pill bg-danger">Sport</span>
+            </div>
+            <div class="content">
+                <img src="https://picsum.photos/seed/picsum/300/150" alt="">
+                <p>Get the same random image every time based on a seed, by adding</p>
+                <a class="btn btn-info" href="{{ path('blog') }}">read more</a>
+            </div>
+        </article>
+    </section>
+{% endblock %}
