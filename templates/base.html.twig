@@ -8,10 +8,10 @@
             <link rel="stylesheet" href="https://bootswatch.com/5/litera/bootstrap.min.css">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
             <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
         {% endblock %}
-        {% block javascripts %}
-        {% endblock %}
+
     </head>
     <body>
     <style>
@@ -46,5 +46,10 @@
             {% block body %}
             {% endblock %}
         </div>
+    {% block javascripts %}
+        <script src="//code.jquery.com/jquery.js"></script>
+        <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    {% endblock %}
+    {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
     </body>
 </html>

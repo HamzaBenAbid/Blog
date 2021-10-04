@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme comment_form 'bootstrap_5_layout.html.twig' %}
 {% block title %}MY Blog{% endblock %}
 {% block body %}
     <style>
@@ -20,6 +20,7 @@
             <div class="metadata" >
                 created At {{ article.createdAt | date('d-m-y') }} at {{ article.createdAt | date('H:i') }}
                 <span class="badge rounded-pill bg-danger">{{ article.category.title }}</span>
+                <span class="badge rounded-pill bg-success">{{ article.comments | length }} commnets </span>
             </div>
             <div class="content">
                 <img src="{{ article.image }}" alt="">
@@ -27,5 +28,23 @@
             </div>
         </article>
     </section>
-    <a href="{{ path('article_edit',{'id':article.id}) }}" class="btn btn-success mt-5">Edit</a>
+    <a href="{{ path('article_edit',{'id':article.id}) }}" class="btn btn-success mt-5 mb-5">Edit</a>
+    <hr>
+    <section id="commnets" >
+        {% for commnet in article.comments %}
+            <div class="comment mt-2">
+                <div class="row">
+                    <div class="md-col-3" style="color: red;">
+                        By {{ commnet.autor }} At <small>({{ commnet.creatAt  | date('d-m-Y')}}  {{ commnet.creatAt  | date('H:i')}} )</small>
+                    </div>
+                    <p>{{ commnet.content }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+    <h1>Add Comment</h1>
+    {{ form_start(comment_form) }}
+    {{ form_widget(comment_form) }}
+    <button class="btn btn-success mb-5">Success</button>
+    {{ form_end(comment_form) }}
 {% endblock %}

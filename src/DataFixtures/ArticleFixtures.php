@@ -43,7 +43,8 @@ class ArticleFixtures extends Fixture
                     $comment ->setAutor($faker->name)
                              ->setContent('this is a comment')
                             ->setCreatAt($faker->dateTimeBetween($comment_max))
-                            ->getArticle($article);
+                            ->setArticle($article);
+                    $manager->persist($comment);
                 }
             }
 
