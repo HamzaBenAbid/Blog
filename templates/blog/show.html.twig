@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
-{% block title %}MY Blog{% endblock %}
 
+{% block title %}MY Blog{% endblock %}
 {% block body %}
     <style>
         .articles{
@@ -16,16 +16,16 @@
     </style>
     <section class="articles mt-5" >
         <article class="mb-5">
-            <h2>Title </h2>
-            <div >
-                created At
-                <span class="badge rounded-pill bg-danger">Sport</span>
+            <h2>{{ article.title }}</h2>
+            <div class="metadata" >
+                created At {{ article.createdAt | date('d-m-y') }} at {{ article.createdAt | date('H:i') }}
+                <span class="badge rounded-pill bg-danger">{{ article.category.title }}</span>
             </div>
             <div class="content">
-                <img src="https://picsum.photos/seed/picsum/300/150" alt="">
-                <p>Get the same random image every time based on a seed, by adding</p>
-                <a class="btn btn-info" href="{{ path('blog') }}">read more</a>
+                <img src="{{ article.image }}" alt="">
+                <p>{{ article.content }}</p>
             </div>
         </article>
     </section>
+    <a href="{{ path('article_edit',{'id':article.id}) }}" class="btn btn-success mt-5">Edit</a>
 {% endblock %}
