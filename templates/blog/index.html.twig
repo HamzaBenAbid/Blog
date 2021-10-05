@@ -22,7 +22,13 @@
           <h2>{{ article.title }}</h2>
           <div class="metadata" >
               created At {{ article.createdAt | date('d-m-Y') }} at {{ article.createdAt | date('H:i') }}
-              <span class="badge rounded-pill bg-danger">{{ article.category.title }}</span>
+              <span class="badge bg-danger">{{ article.category.title }}</span>
+              {% if article.user %}
+                  By
+                  <span class="badge bg-success">
+                      <strong>{{ article.user.firstname }} {{ article.user.lastname }}</strong>
+                  </span>
+              {% endif %}
           </div>
           <div class="content">
               <img src="{{ article.image }}" alt="">

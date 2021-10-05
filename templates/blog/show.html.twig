@@ -28,7 +28,12 @@
             </div>
         </article>
     </section>
-    <a href="{{ path('article_edit',{'id':article.id}) }}" class="btn btn-success mt-5 mb-5">Edit</a>
+    {% if app.user %}
+         {% if app.user == article.user  %}
+             <a href="{{ path('article_edit',{'id':article.id}) }}" class="btn btn-success mt-5 mb-5">Edit</a>
+           {% endif%}
+    {% endif %}
+
     <hr>
     <section id="commnets" >
         {% for commnet in article.comments %}
@@ -43,8 +48,14 @@
         {% endfor %}
     </section>
     <h1>Add Comment</h1>
-    {{ form_start(comment_form) }}
-    {{ form_widget(comment_form) }}
-    <button class="btn btn-success mb-5">Success</button>
-    {{ form_end(comment_form) }}
+
+    {% if not app.user %}
+        <a class="btn btn-info" href="{{ path('app_login') }}">you have to sign in to add acomment</a>
+        {% else %}
+            {{ form_start(comment_form) }}
+            {{ form_widget(comment_form) }}
+            <button class="btn btn-success mb-5 mt-2">Success</button>
+            {{ form_end(comment_form) }}
+    {% endif %}
+
 {% endblock %}
