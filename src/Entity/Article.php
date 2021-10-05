@@ -24,13 +24,19 @@ class Article
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
      *     min=6,
-     *     minMessage="Your article title must be at least {{ limit }} characters long"
+     *     max=255,
+     *     minMessage="Your article title must be at least {{ limit }} characters long",
+     *     maxMessage="Your article title must be no more then {{ limit }} characters long"
      * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *     min=30,
+     *     minMessage="Your article title must be at least {{ limit }} characters long"
+     *)
      */
     private $content;
 
